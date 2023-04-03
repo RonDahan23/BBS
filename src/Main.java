@@ -12,7 +12,7 @@ public class Main
     static BigInteger N = new BigInteger("1200000003730000000273");
 
     static BigInteger phi = new BigInteger("1200000003660000000180");
-    static BigInteger Seed = BigInteger.valueOf(123456789);
+
 
     static Hashtable<Integer, Character> hashTable56 = new Hashtable<>();
 
