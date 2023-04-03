@@ -65,7 +65,8 @@ public class DES {
         hashTable48 = InsertHashTable(str, hashTable48);
 
         StringBuilder strGenerating56Bits = new StringBuilder();
-        for (int i = 0; i < PC2.length; i++) {
+        for (int i = 0; i < PC2.length; i++)
+        {
             Character value = hashTable48.get(PC2[i] - 1);
             if (value != null) {
                 strGenerating56Bits.append(value.charValue());

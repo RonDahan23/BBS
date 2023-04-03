@@ -1,8 +1,18 @@
+import java.math.BigInteger;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Main {
+public class Main
+
+{
+
+    static BigInteger p = new BigInteger("30000000091");
+    static BigInteger q = new BigInteger("40000000003");
+    static BigInteger N = new BigInteger("1200000003730000000273");
+
+    static BigInteger phi = new BigInteger("1200000003660000000180");
+    static BigInteger Seed = BigInteger.valueOf(123456789);
 
     static Hashtable<Integer, Character> hashTable56 = new Hashtable<>();
 
@@ -25,17 +35,22 @@ public class Main {
 
     static Integer[] NumberOfLeftShifts = {1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,1};
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
         DES d = new DES();
-        String a = "IEOFIT#1";
-        hashTable56 = d.InsertHashTable(d.stringToBinary(a), hashTable56);
+        BBS b = new BBS();
+        String a = b.generateBBSKeyStream(N);
+        hashTable56 = d.InsertHashTable(a, hashTable56);
 
         String strGenerating56Bits = d.Generating56Bits(hashTable56, PC1);
         String[] parts = d.CutInTheMiddle(strGenerating56Bits);
         String left = parts[0];
         String right = parts[1];
         d.Do16LeftShift(right, left, NumberOfLeftShifts, PC2);
+
+
+       b.generateBBSKeyStream(N);
 
     }
 
