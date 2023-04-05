@@ -86,7 +86,7 @@ public class DES {
     }
 
 
-    public static String[] GenreateMtoBits(String str, Integer[] IP)
+    public static String[] GenerateMtoBits(String str, Integer[] IP)
     {
         Hashtable<Integer, Character> hashTableForM = new Hashtable<>();
         str = stringToBinary(str);

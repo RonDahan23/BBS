@@ -70,6 +70,7 @@ public class Main
         String a = b.generateBBSKeyStream(N);
         hashTable56 = d.InsertHashTable(a, hashTable56);
 
+
         String strGenerating56Bits = d.Generating56Bits(hashTable56, PC1);
         String[] parts = d.CutInTheMiddle(strGenerating56Bits);
         String left = parts[0];
