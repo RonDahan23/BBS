@@ -42,22 +42,30 @@ public class DES {
         String[] parts = {str.substring(0, mid), str.substring(mid)};
         return parts;
     }
-    public static String Do16LeftShift(String right, String left, Integer[] NumberOfLeftShifts, Integer[] PC2)
+    public static String[] Do16LeftShift(String right, String left, Integer[] NumberOfLeftShifts, Integer[] PC2)
     {
-        String Text ="";
+        String NewText = "";
+        String Text = "";
         for(int i = 0; i < NumberOfLeftShifts.length; i++)
         {
 
             left = left.substring(NumberOfLeftShifts[i]) + left.substring(0, NumberOfLeftShifts[i]);
             right = right.substring(NumberOfLeftShifts[i]) + right.substring(0, NumberOfLeftShifts[i]);
             Text = left + right;
-            Text = Generating48Bits(Text, PC2);
-            System.out.println(Text);
+            NewText += Generating48Bits(Text, PC2);
 
         }
+        String[] parts = new String[16];
+        int length = NewText.length();
+        int partLength = (int) Math.ceil((double) length / 16);
 
+        for (int i = 0; i < length; i += partLength)
+        {
+            int partIndex = i / partLength;
+            parts[partIndex] = NewText.substring(i, Math.min(length, i + partLength));
+        }
 
-        return Text;
+        return parts;
     }
     public static String Generating48Bits(String str, Integer[] PC2)
     {
@@ -75,6 +83,28 @@ public class DES {
 
         return strGenerating56Bits.toString();
 
+    }
+
+
+    public static String[] GenreateMtoBits(String str, Integer[] IP)
+    {
+        Hashtable<Integer, Character> hashTableForM = new Hashtable<>();
+        str = stringToBinary(str);
+        hashTableForM = InsertHashTable(str, hashTableForM);
+
+        StringBuilder strGeneratingM = new StringBuilder();
+        for (int i = 0; i < IP.length; i++)
+        {
+            Character value = hashTableForM.get(IP[i] - 1);
+
+            if (value != null)
+            {
+                strGeneratingM.append(value.charValue());
+            }
+        }
+        String[] parts = CutInTheMiddle(strGeneratingM.toString());
+
+    return parts;
     }
 
 
