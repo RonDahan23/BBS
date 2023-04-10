@@ -106,6 +106,24 @@ public class DES {
 
     return parts;
     }
+    public static String ExpandFrom32bitsTo48(Integer[] E, String[] parts)
+    {
+        Hashtable<Integer, Character> hashTableForRight = new Hashtable<>();
+        hashTableForRight = InsertHashTable(parts[1], hashTableForRight);
+
+        StringBuilder strGeneratingTo48 = new StringBuilder();
+        for (int i = 0; i < E.length; i++)
+        {
+            Character value = hashTableForRight.get(E[i] - 1);
+
+            if (value != null)
+            {
+                strGeneratingTo48.append(value.charValue());
+            }
+        }
+        return strGeneratingTo48.toString();
+    }
+
 
 
 }
