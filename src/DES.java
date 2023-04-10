@@ -92,14 +92,13 @@ public class DES
     public static String[] Do16LeftShift(String right, String left)
     {
         String NewText = "";
-        String Text = "";
         for(int i = 0; i < NumberOfLeftShifts.length; i++)
         {
 
             left = left.substring(NumberOfLeftShifts[i]) + left.substring(0, NumberOfLeftShifts[i]);
             right = right.substring(NumberOfLeftShifts[i]) + right.substring(0, NumberOfLeftShifts[i]);
-            Text = left + right;
-            NewText += Generating48Bits(Text, PC2);
+            String Text = left + right;
+            NewText += Generating48Bits(Text);
 
         }
         String[] parts = new String[16];
@@ -114,7 +113,7 @@ public class DES
 
         return parts;
     }
-    public static String Generating48Bits(String str, Integer[] PC2)
+    public static String Generating48Bits(String str)
     {
         Hashtable<Integer, Character> hashTable48 = new Hashtable<>();
         hashTable48 = InsertHashTable(str, hashTable48);
@@ -131,9 +130,7 @@ public class DES
         return strGenerating56Bits.toString();
 
     }
-
-
-    public static String[] GenerateMtoBits(String str, Integer[] IP)
+    public static String[] GenerateMtoBits(String str)
     {
         Hashtable<Integer, Character> hashTableForM = new Hashtable<>();
         str = stringToBinary(str);
@@ -153,15 +150,15 @@ public class DES
 
         return parts;
     }
-    public static String ExpandFrom32bitsTo48(Integer[] E, String[] parts)
+    public static String Ffunction(String[] parts)
     {
         Hashtable<Integer, Character> hashTableForRight = new Hashtable<>();
         hashTableForRight = InsertHashTable(parts[1], hashTableForRight);
 
         StringBuilder strGeneratingTo48 = new StringBuilder();
-        for (int i = 0; i < E.length; i++)
+        for (int i = 0; i < E_TABLE.length; i++)
         {
-            Character value = hashTableForRight.get(E[i] - 1);
+            Character value = hashTableForRight.get(E_TABLE[i] - 1);
 
             if (value != null)
             {
