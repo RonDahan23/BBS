@@ -2,9 +2,15 @@ import java.math.BigInteger;
 import java.util.Random;
 
 
-public class BBS {
+public class BBS
+{
+    static BigInteger p = new BigInteger("30000000091");
+    static BigInteger q = new BigInteger("40000000003");
+    static BigInteger N = new BigInteger("1200000003730000000273");
 
-    public static long RandomSeed(BigInteger N) {
+    static BigInteger phi = new BigInteger("1200000003660000000180");
+
+    public static long RandomSeed() {
 
         Random rand = new Random();
         long Seed = rand.nextInt(9 - 1) + 1;
@@ -21,15 +27,15 @@ public class BBS {
         }
         else
         {
-            RandomSeed(N);
+            RandomSeed();
         }
         return 0;
     }
 
-    public static String generateBBSKeyStream(BigInteger N)
+    public static String generateBBSKeyStream()
     {
         StringBuilder sb = new StringBuilder();
-        long Seed = RandomSeed(N);
+        long Seed = RandomSeed();
         BigInteger bigSeed = BigInteger.valueOf(Seed);
 
         for (int i = 0; i < 64; i++)
