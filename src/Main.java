@@ -25,7 +25,7 @@ public class Main
         String[] parts = d.CutInTheMiddle(strGenerating56Bits);
         String left = parts[0];
         String right = parts[1];
-        parts =  d.Do16LeftShift(right, left);
+
 
 
 
